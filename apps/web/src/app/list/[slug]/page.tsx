@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
-import { Calendar, MapPin, Heart, Lock } from 'lucide-react';
+import { Calendar, MapPin, Heart } from 'lucide-react';
 import { formatDate, daysUntil } from '@hediyola/shared';
 import { createClient, isSupabaseConfigured } from '@/lib/supabase/server';
 import { unlockCookieName } from '@/lib/registry/utils';
