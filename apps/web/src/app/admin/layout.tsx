@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation';
 import { Package, LayoutDashboard } from 'lucide-react';
 import { getCurrentUser } from '@/lib/auth/guards';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * Admin shell. Access is gated on the DB role (ADMIN); non-admins are bounced.
  * RLS independently blocks any admin-only data even if this check were bypassed.

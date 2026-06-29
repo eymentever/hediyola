@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation';
 import { LayoutDashboard, User } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * Protected dashboard shell. Middleware also guards /dashboard, but we re-check
  * here (defense in depth) so a missing session can never render private data.
