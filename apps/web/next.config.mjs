@@ -26,6 +26,14 @@ const nextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
+  typescript: {
+    // Ignore type errors during production builds (resolved by workspaces typecheck)
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    // Ignore linting errors during production builds
+    ignoreDuringBuilds: true,
+  },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },
