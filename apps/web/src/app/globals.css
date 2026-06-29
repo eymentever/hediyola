@@ -4,11 +4,11 @@
 
 @layer base {
   :root {
-    --background: 36 43% 97%; /* cream */
-    --foreground: 240 9% 18%; /* ink */
-    --primary: 345 58% 77%; /* blush */
-    --accent: 40 53% 62%; /* gold */
-    --radius: 1rem;
+    --background: 60 9% 98%; /* Warm Silk */
+    --foreground: 240 10% 4%; /* Midnight Charcoal */
+    --primary: 240 6% 10%; /* Sleek Zinc */
+    --accent: 34 38% 64%; /* Champagne Gold */
+    --radius: 0.75rem;
   }
 
   html {
