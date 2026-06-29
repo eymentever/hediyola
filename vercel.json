@@ -1,4 +1,5 @@
 {
+  "installCommand": "npm install --legacy-peer-deps",
   "buildCommand": "npx turbo run build --filter=@hediyola/web",
   "outputDirectory": "apps/web/.next",
   "framework": "nextjs"
