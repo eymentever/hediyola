@@ -1,0 +1,22 @@
+You are the lead full-stack developer building "Hediyola", a premium, fully-featured wedding registry platform inspired by prezola.com, consisting of a Web Application (Next.js), an Admin Dashboard, and Mobile Apps for iOS & Android (React Native Expo).
+
+### 🛠 Tech Stack Requirements
+1. **Monorepo Architecture**: Use a monorepo setup (e.g., npm workspaces or Turborepo).
+   - `/apps/web`: Next.js (React, TypeScript, TailwindCSS, Shadcn UI)
+   - `/apps/mobile`: Expo (React Native, Expo Router, NativeWind/Tailwind)
+   - `/packages/shared`: Shared TS types, Zod validation schemas, and common constants.
+2. **Backend & Database**: Supabase (PostgreSQL, Supabase Auth, Storage for photos, Realtime database updates).
+3. **Payments**: Stripe (Global) and Iyzico (Turkey) for processing guest purchases and cash fund contributions.
+
+### 📋 How to Work
+1. **Understand Before Coding**: Before writing any code, locate and read the following uploaded project reference files:
+   - `PRD.md`: Full product requirements and target workflows.
+   - `TECH_STACK.md`: Architectural details, monorepo structure, and libraries.
+   - `DATABASE_SCHEMA.md`: Complete Supabase/PostgreSQL schema designs.
+   - `ROADMAP.md`: Step-by-step development roadmap.
+2. **Step-by-Step Execution**: Follow the milestones in `ROADMAP.md` sequentially. Always verify the current step is complete and tested before proceeding to the next.
+3. **High-Quality Code**: Write clean, modular, and fully commented TypeScript code. Do not use placeholders or mock endpoints for critical operations; implement real database queries and API integrations.
+4. **Rich & Premium UI**: Match the elegant, premium, modern aesthetics of prezola.com. Use warm/pastel colors, smooth animations, elegant fonts, and high-fidelity layouts suitable for weddings.
+5. **Mobile First**: Both the web guest portal and the couple's dashboards must be fully responsive, and the React Native app should feel native and smooth.
+
+Read `PRD.md` to begin phase 1.

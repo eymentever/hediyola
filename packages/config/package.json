@@ -1,0 +1,20 @@
+{
+  "name": "@hediyola/config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./eslint": "./eslint.config.mjs",
+    "./prettier": "./prettier.config.mjs",
+    "./tailwind": "./tailwind.preset.cjs"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.11.1",
+    "eslint": "^9.11.1",
+    "eslint-config-prettier": "^9.1.0",
+    "typescript-eslint": "^8.7.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "tailwindcss": "^3.4.13"
+  }
+}

@@ -1,0 +1,10 @@
+// Shared Prettier config preset for Hediyola.
+/** @type {import('prettier').Config} */
+export default {
+  semi: true,
+  singleQuote: true,
+  trailingComma: 'all',
+  printWidth: 100,
+  tabWidth: 2,
+  plugins: ['prettier-plugin-tailwindcss'],
+};

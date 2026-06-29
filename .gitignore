@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Builds
+dist/
+build/
+.next/
+out/
+.expo/
+.expo-shared/
+*.tsbuildinfo
+
+# Turbo
+.turbo/
+
+# Environment
+.env
+.env*.local
+.env.development
+.env.production
+!.env.example
+
+# Prisma
+packages/db/prisma/migrations/dev.db*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Native
+*.keystore
+!debug.keystore
+android/
+ios/
+*.orig.*
+web-build/
+
+# Testing
+coverage/
