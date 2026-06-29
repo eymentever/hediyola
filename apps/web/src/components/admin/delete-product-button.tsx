@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,16 +10,21 @@ import { deleteProductAction } from '@/lib/admin/product-actions';
 export function DeleteProductButton({ productId }: { productId: string }) {
   const router = useRouter();
   const [confirming, setConfirming] = useState(false);
-  const [pending, startTransition] = useTransition();
+  const [pending, setPending] = useState(false);
 
-  function onDelete() {
-    startTransition(async () => {
+  async function onDelete() {
+    setPending(true);
+    try {
       const res = await deleteProductAction(productId);
       if (res.ok) {
         router.push('/admin/products');
         router.refresh();
       }
-    });
+    } catch {
+      // Ignore errors or handle gracefully
+    } finally {
+      setPending(false);
+    }
   }
 
   if (!confirming) {
