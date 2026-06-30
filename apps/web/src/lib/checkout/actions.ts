@@ -153,3 +153,62 @@ export async function createCheckoutAction(payload: {
 
   return { ok: true, data: { orderId: order.id, total: totals.guestTotal } };
 }
+
+/**
+ * Simulates a successful payment webhook for dev/demo mode.
+ * Moves order to PAID and updates registry items received quantities/amounts.
+ */
+export async function simulatePaymentAction(orderId: string): Promise<ApiResult<{ success: true }>> {
+  const admin = getSupabaseAdmin();
+
+  // 1) Fetch order details.
+  const { data: order } = await admin
+    .from('orders')
+    .select('id, status')
+    .eq('id', orderId)
+    .maybeSingle();
+
+  if (!order) return { ok: false, error: 'Sipariş bulunamadı.', code: 'NOT_FOUND' };
+  if (order.status === 'PAID') return { ok: true, data: { success: true } };
+
+  // 2) Fetch order items to update their registry progress.
+  const { data: orderItems } = await admin
+    .from('order_items')
+    .select('registry_item_id, quantity, amount_paid, registry_items(type, price, qty_received, amount_received)')
+    .eq('order_id', orderId);
+
+  if (!orderItems) return { ok: false, error: 'Sipariş detayları alınamadı.', code: 'ITEMS_NOT_FOUND' };
+
+  // 3) Update order status to PAID.
+  const { error: updateOrderErr } = await admin
+    .from('orders')
+    .update({ status: 'PAID' })
+    .eq('id', orderId);
+
+  if (updateOrderErr) return { ok: false, error: 'Sipariş güncellenemedi.', code: 'UPDATE_FAILED' };
+
+  // 4) Update registry items progress.
+  for (const item of orderItems) {
+    const registryItemId = item.registry_item_id;
+    const details = item.registry_items as any;
+    if (!details) continue;
+
+    if (details.type === 'CASH_FUND' || details.type === 'CHARITY') {
+      const currentReceived = Number(details.amount_received || 0);
+      const newReceived = currentReceived + Number(item.amount_paid);
+      await admin
+        .from('registry_items')
+        .update({ amount_received: newReceived })
+        .eq('id', registryItemId);
+    } else {
+      const currentQty = Number(details.qty_received || 0);
+      const newQty = currentQty + Number(item.quantity);
+      await admin
+        .from('registry_items')
+        .update({ qty_received: newQty })
+        .eq('id', registryItemId);
+    }
+  }
+
+  return { ok: true, data: { success: true } };
+}
