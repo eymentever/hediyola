@@ -1,9 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { QrCode, Download, Printer, Loader2, Sparkles } from 'lucide-react';
+import { QrCode, Download, Printer, Loader2, Sparkles, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 interface RegistryQrCodeProps {
   slug: string;
@@ -11,6 +10,7 @@ interface RegistryQrCodeProps {
 }
 
 export function RegistryQrCode({ slug, title }: RegistryQrCodeProps) {
+  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   
   // Construct the absolute public URL of the registry
@@ -121,68 +121,89 @@ export function RegistryQrCode({ slug, title }: RegistryQrCodeProps) {
   }
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-2 border-gold-500/20 hover:bg-gold-500/10 text-gold-700">
-          <QrCode className="h-4 w-4 text-gold-500" /> Davetiye & Masa QR Kodu
-        </Button>
-      </DialogTrigger>
+    <>
+      <Button 
+        onClick={() => setOpen(true)}
+        variant="outline" 
+        size="sm" 
+        className="gap-2 border-gold-500/20 hover:bg-gold-500/10 text-gold-700"
+      >
+        <QrCode className="h-4 w-4 text-gold-500" /> Davetiye & Masa QR Kodu
+      </Button>
       
-      <DialogContent className="max-w-md rounded-2xl bg-cream border-ink/5 selection:bg-gold-300 selection:text-ink">
-        <DialogHeader className="text-center pb-2">
-          <DialogTitle className="font-serif text-xl font-bold flex items-center justify-center gap-1.5 text-ink">
-            <Sparkles className="h-4 w-4 text-gold-500" /> QR Kodunuz Hazır
-          </DialogTitle>
-          <p className="text-xs text-ink-soft mt-1">
-            Bu QR kodu davetiyelerinize ekleyebilir veya düğün günü masalara yerleştirebilirsiniz.
-          </p>
-        </DialogHeader>
-
-        <div className="flex flex-col items-center py-6 bg-white rounded-xl border border-ink/5 shadow-inner">
-          {/* Brand header */}
-          <span className="text-[10px] font-bold uppercase tracking-widest text-gold-700/80 mb-2">HEDİYOLA</span>
-          <h3 className="font-serif text-lg font-bold text-ink mb-1">Düğün Hediye Listemiz</h3>
-          <p className="text-xs text-ink-soft mb-6 px-4 text-center">{title}</p>
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-ink/40 backdrop-blur-sm transition-opacity"
+            onClick={() => setOpen(false)}
+          />
           
-          {/* QR Code image */}
-          <div className="relative p-4 border border-ink/5 rounded-xl bg-white shadow-soft">
-            <img 
-              src={qrCodeImageUrl} 
-              alt="Hediye listesi QR Kodu" 
-              className="w-48 h-48"
-            />
+          {/* Custom Modal Panel */}
+          <div className="animate-fade-in relative w-full max-w-md rounded-2xl bg-cream border border-ink/5 p-6 shadow-xl z-10 space-y-4">
+            <div className="flex items-center justify-between border-b border-ink/5 pb-3">
+              <div className="flex items-center gap-1.5 text-ink">
+                <Sparkles className="h-4 w-4 text-gold-500" />
+                <h3 className="font-serif text-lg font-bold">QR Kodunuz Hazır</h3>
+              </div>
+              <button 
+                onClick={() => setOpen(false)}
+                className="rounded-lg p-1.5 text-ink-soft hover:bg-ink/5 hover:text-ink transition"
+                aria-label="Kapat"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            
+            <p className="text-xs text-ink-soft">
+              Bu QR kodu davetiyelerinize ekleyebilir veya düğün günü masalara yerleştirebilirsiniz.
+            </p>
+
+            <div className="flex flex-col items-center py-6 bg-white rounded-xl border border-ink/5 shadow-inner">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-gold-700/80 mb-2">HEDİYOLA</span>
+              <h3 className="font-serif text-base font-bold text-ink mb-1">Düğün Hediye Listemiz</h3>
+              <p className="text-xs text-ink-soft mb-6 px-4 text-center">{title}</p>
+              
+              <div className="relative p-4 border border-ink/5 rounded-xl bg-white shadow-soft">
+                <img 
+                  src={qrCodeImageUrl} 
+                  alt="Hediye listesi QR Kodu" 
+                  className="w-48 h-48"
+                />
+              </div>
+
+              <p className="text-[10px] text-ink-soft mt-6 text-center max-w-xs leading-relaxed">
+                Misafirleriniz telefonlarının kamerasıyla kodu okutarak listenize saniyeler içinde ulaşabilir.
+              </p>
+            </div>
+
+            {/* Action buttons */}
+            <div className="grid grid-cols-2 gap-3 pt-2">
+              <Button 
+                onClick={handleDownload} 
+                disabled={loading}
+                className="bg-ink hover:bg-ink-soft text-white rounded-lg h-11 font-semibold flex items-center justify-center gap-2"
+              >
+                {loading ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Download className="h-4 w-4 text-gold-500" />
+                )}
+                Görseli İndir
+              </Button>
+
+              <Button 
+                onClick={handlePrint}
+                variant="outline"
+                className="border-ink/10 hover:bg-ink/5 text-ink rounded-lg h-11 font-semibold flex items-center justify-center gap-2"
+              >
+                <Printer className="h-4 w-4 text-ink-soft" />
+                Yazdır (Masa Kartı)
+              </Button>
+            </div>
           </div>
-
-          <p className="text-[10px] text-ink-soft mt-6 text-center max-w-xs leading-relaxed">
-            Misafirleriniz telefonlarının kamerasıyla kodu okutarak listenize saniyeler içinde ulaşabilir.
-          </p>
         </div>
-
-        {/* Action buttons */}
-        <div className="grid grid-cols-2 gap-3 mt-4">
-          <Button 
-            onClick={handleDownload} 
-            disabled={loading}
-            className="bg-ink hover:bg-ink-soft text-white rounded-lg h-11 font-semibold flex items-center justify-center gap-2"
-          >
-            {loading ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              <Download className="h-4 w-4 text-gold-500" />
-            )}
-            Görseli İndir
-          </Button>
-
-          <Button 
-            onClick={handlePrint}
-            variant="outline"
-            className="border-ink/10 hover:bg-ink/5 text-ink rounded-lg h-11 font-semibold flex items-center justify-center gap-2"
-          >
-            <Printer className="h-4 w-4 text-ink-soft" />
-            Yazdır (Masa Kartı)
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
+      )}
+    </>
   );
 }
