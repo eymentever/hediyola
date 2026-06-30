@@ -3,8 +3,7 @@ import { Heart, Gift, Plane, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 /**
- * Landing page (Sleek & Premium Minimalist Theme).
- * Inspired by luxury editorial registry platforms.
+ * Landing page (Sleek & Premium Minimalist Theme with High-End Copywriting).
  */
 export default function HomePage() {
   return (
@@ -14,11 +13,11 @@ export default function HomePage() {
         <Link href="/" className="font-serif text-2xl font-bold tracking-tight text-ink">
           HEDİYOLA
         </Link>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           <Link href="/login" className="text-sm font-medium text-ink-soft hover:text-ink transition">
             Giriş Yap
           </Link>
-          <Button asChild size="sm" className="bg-ink hover:bg-ink-soft text-white rounded-lg">
+          <Button asChild size="sm" className="bg-ink hover:bg-ink-soft text-white rounded-lg px-4 h-9">
             <Link href="/signup">Başla</Link>
           </Button>
         </div>
@@ -28,22 +27,21 @@ export default function HomePage() {
       <section className="relative overflow-hidden px-6 py-20 text-center md:py-32">
         <div className="animate-fade-in mx-auto max-w-3xl">
           <span className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-gold-500/20 bg-gold-300/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-gold-700">
-            <Sparkles className="h-3 w-3 text-gold-500" /> Premium Düğün Hediye Listesi
+            <Sparkles className="h-3 w-3 text-gold-500" /> Düğün Hediye Listenizin En Seçkin Hali
           </span>
           <h1 className="text-4xl font-bold leading-tight tracking-tight text-ink md:text-6xl font-serif">
-            Hayalinizdeki hediyeler, <br className="hidden md:inline" />
-            <span className="italic font-normal text-gold-500">tek bir adreste</span>
+            Düşlediğiniz gelecek, <br className="hidden md:inline" />
+            <span className="italic font-normal text-gold-500">zarif dokunuşlarla</span> şekillensin
           </h1>
-          <p className="mt-6 text-lg text-ink-soft max-w-xl mx-auto leading-relaxed">
-            Katalog hediyeleri, balayı fonları ve nakit katkıları zarif bir sayfada toplayın.
-            Misafirleriniz saniyeler içinde hediye gönderebilsin.
+          <p className="mt-6 text-base md:text-lg text-ink-soft max-w-xl mx-auto leading-relaxed">
+            Seçkin küresel markaların koleksiyonlarını, hayalinizdeki balayı seyahati fonlarını ve anlamlı katkıları, sizin için tasarlanmış özel bir dijital dünyada birleştirin.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="bg-ink hover:bg-ink-soft text-white px-8 h-12 rounded-lg font-medium shadow-soft">
-              <Link href="/signup">Listeni Oluştur</Link>
+              <Link href="/signup">Listenizi Tasarlayın</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-ink/10 hover:bg-ink/5 text-ink px-8 h-12 rounded-lg font-medium">
-              <Link href="/search">Liste Ara</Link>
+              <Link href="/search">Bir Liste Bulun</Link>
             </Button>
           </div>
         </div>
@@ -53,18 +51,18 @@ export default function HomePage() {
       <section className="mx-auto grid max-w-5xl gap-8 px-6 pb-32 md:grid-cols-3">
         <Feature
           icon={<Gift className="h-5 w-5 text-gold-500" />}
-          title="Katalog Hediyeleri"
-          body="Seçkin markaların ürünlerini oda ve kategorilere göre kolayca listenize ekleyin."
+          title="Seçkin Marka Koleksiyonları"
+          body="Ev tasarımı, mutfak ve yaşam alanlarınız için özenle seçilmiş dünya markalarını listenize dahil edin."
         />
         <Feature
           icon={<Plane className="h-5 w-5 text-gold-500" />}
-          title="Balayı & Nakit Fonu"
-          body="Balayı uçuşları, yeni ev birikimleri veya özel deneyimler için esnek fonlar yaratın."
+          title="Balayı & Seyahat Potları"
+          body="Hayalini kurduğunuz seyahatler, akşam yemekleri veya yeni ev birikiminiz için misafirlerinizin katılabileceği özel fonlar oluşturun."
         />
         <Feature
           icon={<Heart className="h-5 w-5 text-gold-500" />}
-          title="Minimalist Tasarım"
-          body="Misafirlerinize aşk hikayenizi, mekan detaylarını ve geri sayımı asil bir görünümle sunun."
+          title="Kişisel Düğün Sayfanız"
+          body="Aşk hikayenizi, heyecanlı geri sayımınızı ve detayları en asil, modern ve minimalist tasarım çizgisiyle misafirlerinize sunun."
         />
       </section>
     </main>
