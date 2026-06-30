@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Check, Plus, Gift, Plane, Heart, Sparkles } from 'lucide-react';
+import { Check, Plus, Gift, Plane, Sparkles } from 'lucide-react';
 import {
   formatCurrency,
   completionPercent,

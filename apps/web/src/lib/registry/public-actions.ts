@@ -12,7 +12,7 @@
  *  - Search runs against ACTIVE registries via the RLS-bound anon client.
  */
 import { cookies } from 'next/headers';
-import { slugSchema, passcodeCheckSchema, type ApiResult } from '@hediyola/shared';
+import { passcodeCheckSchema, type ApiResult } from '@hediyola/shared';
 import { getSupabaseAdmin } from '@hediyola/db/supabase-admin';
 import { createClient } from '@/lib/supabase/server';
 import { getClientIp } from '@/lib/security/request';

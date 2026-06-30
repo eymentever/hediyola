@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, useParams } from 'next/navigation';
-import { ShieldCheck, ArrowLeft, Heart, CreditCard, Loader2 } from 'lucide-react';
+import { ShieldCheck, ArrowLeft, CreditCard, Loader2 } from 'lucide-react';
 import { formatCurrency } from '@hediyola/shared';
 import { useCart } from '@/lib/cart/cart-context';
 import { Button } from '@/components/ui/button';
