@@ -1,6 +1,6 @@
 # Hediyola — Geliştirme Durumu
 
-Son güncelleme: 29 Haziran 2026. Konum: `Masaüstü\hediyola_project`.
+Son güncelleme: 30 Haziran 2026. Konum: `Masaüstü\hediyola_project`.
 
 ## Şu ana kadar tamamlananlar
 
@@ -10,23 +10,23 @@ Son güncelleme: 29 Haziran 2026. Konum: `Masaüstü\hediyola_project`.
 | 2 | Kimlik doğrulama (e-posta + Google), profil paneli, mobil giriş | ✅ |
 | 3 | Liste oluşturma sihirbazı + özelleştirme + görsel yükleme | ✅ |
 | 4 | Admin ürün yönetimi, katalog/fon/özel ekleme, güvenli scraper | ✅ |
-| + | Dayanıklılık katmanı (hata/404/loading sınırları) | ✅ |
-| 5 | Misafir portalı + sepet (`/list/[slug]`) | ⏳ sırada |
-| 6 | Ödeme (Stripe + Iyzico) | ⏳ |
-| 7 | Panolar + ödeme talebi | ⏳ |
+| 5 | Misafir portalı, sepet, checkout ve ödeme simülasyonu | ✅ |
+| 6 | Ödeme entegrasyonu (Stripe + Iyzico gerçek API'leri) | ⏳ sırada |
+| 7 | Panolar + ödeme talebi (Payout / Teşekkür Kartı takibi) | ⏳ |
 | 8 | Mobil (barkod, bildirim) | ⏳ |
 | 9 | Test, optimizasyon, deploy | ⏳ |
 
 ## Uygulama şu an ne yapabiliyor?
 
 - Çift kayıt olur / giriş yapar (e-posta-parola veya Google).
-- Çok adımlı sihirbazla düğün listesi oluşturur (tarih, mekan, özel bağlantı `hediyola.com/list/...`, gizli/parolalı seçeneği, kargo adresi).
+- Çok adımlı sihirbazla düğün listesi oluşturur (tarih, mekan, özel bağlantı `hediyola.vercel.app/list/...`, gizli/parolalı seçeneği, kargo adresi).
 - Listesini özelleştirir: aşk hikayesi, geri sayım, kapak ve profil görseli.
 - Listesine hediye ekler: katalogdan ürün, balayı/nakit fonu, veya dış siteden link yapıştırarak özel ürün.
 - Admin, ürün kataloğunu yönetir (ekle/düzenle/sil).
+- Misafirler çifte özel listeyi açıp ürün veya fon tipine göre filtreleme yapabilir.
+- Misafirler seçtikleri ürünleri şık Türkçe sepetlerine ekleyebilir, mesaj yazıp ödeme simülatörüyle kart kullanmadan güvenle satın alabilir.
 - Mobil uygulamada giriş yapıp özet ekranı görür.
-
-> Misafirlerin listeyi görüp hediye alması ve ödeme **Phase 5-6**'da gelecek.
+- Tasarım tamamen güncellendi: Asil, sade ve premium lüks çizgide (Midnight Charcoal, Silk White, Champagne Gold).
 
 ## Nasıl kontrol edersin?
 
