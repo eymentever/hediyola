@@ -3,6 +3,9 @@
  *
  * Security: auth tokens are persisted in expo-secure-store (encrypted
  * keychain/keystore), NEVER in plain AsyncStorage. See SECURITY.md §3.
+ *
+ * When EXPO_PUBLIC_SUPABASE_URL / EXPO_PUBLIC_SUPABASE_ANON_KEY are not set,
+ * we fall back to placeholders so the app bundle can compile and run in demo mode.
  */
 import 'react-native-url-polyfill/auto';
 import { createClient } from '@supabase/supabase-js';
@@ -15,14 +18,11 @@ const ExpoSecureStoreAdapter = {
   removeItem: (key: string) => SecureStore.deleteItemAsync(key),
 };
 
-const url = process.env.EXPO_PUBLIC_SUPABASE_URL;
-const anonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
+const PLACEHOLDER_URL = 'https://placeholder.supabase.co';
+const PLACEHOLDER_KEY = 'placeholder-anon-key';
 
-if (!url || !anonKey) {
-  throw new Error(
-    'Missing EXPO_PUBLIC_SUPABASE_URL / EXPO_PUBLIC_SUPABASE_ANON_KEY. See apps/mobile/.env.example.',
-  );
-}
+const url = process.env.EXPO_PUBLIC_SUPABASE_URL || PLACEHOLDER_URL;
+const anonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || PLACEHOLDER_KEY;
 
 export const supabase = createClient(url, anonKey, {
   auth: {
@@ -32,3 +32,11 @@ export const supabase = createClient(url, anonKey, {
     detectSessionInUrl: false,
   },
 });
+
+/** Returns true when Supabase is configured (not just placeholders). */
+export function isSupabaseConfigured(): boolean {
+  return !!(
+    process.env.EXPO_PUBLIC_SUPABASE_URL &&
+    process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY
+  );
+}
